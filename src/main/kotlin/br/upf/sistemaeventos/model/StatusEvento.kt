@@ -1,7 +1,7 @@
 package br.upf.sistemaeventos.model
 
 enum class StatusEvento {
-    PRIVISTO,
+    PREVISTO,
     ABERTO,
     ENCERRADO,
     CANCELADO
