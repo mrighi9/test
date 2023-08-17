@@ -53,11 +53,10 @@ class EventoRepository(private var eventos: MutableList<Evento>) {
         return eventoComId
     }
 
-    fun update(id: Long, eventoAtualizado: Evento): Evento {
-        val evento = eventos.first { it.id == id }
+    fun update(evento: Evento, eventoAtualizado: Evento): Evento {
         eventos.remove(evento)
         val eventoAtualizadoComId = Evento(
-            id = id,
+            id = evento.id,
             nome = eventoAtualizado.nome,
             data = eventoAtualizado.data,
             dataInicioInsc = eventoAtualizado.dataInicioInsc,
@@ -72,8 +71,7 @@ class EventoRepository(private var eventos: MutableList<Evento>) {
         return eventoAtualizadoComId
     }
 
-    fun deletar(id: Long) {
-        val evento = eventos.first { it.id == id }
+    fun deletar(evento: Evento) {
         eventos.remove(evento)
     }
 }
