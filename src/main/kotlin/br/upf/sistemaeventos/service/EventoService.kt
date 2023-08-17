@@ -38,8 +38,6 @@ class EventoService(private val repository: EventoRepository,
     }
 
     fun deletar(id: Long) {
-        val evento = repository.findAll().firstOrNull { it.id == id }
-            ?: throw NotFoundException(EVENTO_NOT_FOUND_MESSAGE)
-        repository.deletar(evento)
+        repository.deletar(id)
     }
 }

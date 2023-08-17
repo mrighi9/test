@@ -71,7 +71,8 @@ class EventoRepository(private var eventos: MutableList<Evento>) {
         return eventoAtualizadoComId
     }
 
-    fun deletar(evento: Evento) {
+    fun deletar(id: Long) {
+        val evento = eventos.first { it.id == id }
         eventos.remove(evento)
     }
 }

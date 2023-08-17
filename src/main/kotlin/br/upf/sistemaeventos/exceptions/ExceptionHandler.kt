@@ -24,4 +24,18 @@ class ExceptionHandler {
         )
     }
 
+    @ExceptionHandler(Exception::class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun handleServerError(
+        exception: Exception,
+        request: HttpServletRequest
+    ): ErrorResponseDTO {
+        return ErrorResponseDTO(
+            status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            error = HttpStatus.INTERNAL_SERVER_ERROR.name,
+            massage = exception.message ?: "Erro desconhecido!",
+            path = request.servletPath
+        )
+    }
+
 }
