@@ -3,6 +3,7 @@ package br.upf.sistemaeventos.controller
 import br.upf.sistemaeventos.dtos.UsuarioDTO
 import br.upf.sistemaeventos.dtos.UsuarioResponseDTO
 import br.upf.sistemaeventos.service.UsuarioService
+import jakarta.transaction.Transactional
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -32,6 +33,7 @@ class UsuarioController(val service: UsuarioService) {
     }
 
     @PostMapping
+    @Transactional
     fun cadastrar(@RequestBody @Valid dto: UsuarioDTO,
                  uriBuilder: UriComponentsBuilder
     ): ResponseEntity<UsuarioResponseDTO> {
@@ -42,6 +44,7 @@ class UsuarioController(val service: UsuarioService) {
     }
 
     @PutMapping("/{id}")
+    @Transactional
     fun atualizar(@PathVariable id: Long,
                   @RequestBody @Valid dto: UsuarioDTO
     ): UsuarioResponseDTO {
@@ -50,6 +53,7 @@ class UsuarioController(val service: UsuarioService) {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Transactional
     fun deletar(@PathVariable id: Long) {
         service.deletar(id)
     }
