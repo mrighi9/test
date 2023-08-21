@@ -5,6 +5,8 @@ import br.upf.sistemaeventos.dtos.EventoDTO
 import br.upf.sistemaeventos.dtos.EventoResponseDTO
 import br.upf.sistemaeventos.exceptions.NotFoundException
 import br.upf.sistemaeventos.repository.EventoRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 private const val EVENTO_NOT_FOUND_MESSAGE = "Evento não encontrado!"
@@ -15,8 +17,15 @@ class EventoService(
     private val converter: EventoConverter
 ) {
 
-    fun listar(): List<EventoResponseDTO> {
-        return repository.findAll()
+    fun listar(
+        nomeEvento: String?,
+        paginacao: Pageable): Page<EventoResponseDTO> {
+        val eventos = if (nomeEvento == null) {
+            repository.findAll(paginacao)
+        } else {
+            repository.findByNome(nomeEvento, paginacao)
+        }
+        return eventos
             .map(converter::toEventoResponseDTO)
     }
 
@@ -28,7 +37,8 @@ class EventoService(
 
     fun cadastrar(dto: EventoDTO): EventoResponseDTO {
         return converter.toEventoResponseDTO(
-            repository.save(converter.toEvento(dto)))
+            repository.save(converter.toEvento(dto))
+        )
     }
 
     fun atualizar(id: Long, dto: EventoDTO): EventoResponseDTO {
