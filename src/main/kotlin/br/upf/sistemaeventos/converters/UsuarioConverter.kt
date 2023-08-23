@@ -12,7 +12,8 @@ class UsuarioConverter {
             id = usuario.id,
             nome = usuario.nome,
             cidade = usuario.cidade,
-            telefone = usuario.telefone
+            telefone = usuario.telefone,
+            email = usuario.email
         )
     }
 
@@ -20,7 +21,9 @@ class UsuarioConverter {
         return Usuario(
             nome = dto.nome,
             cidade = dto.cidade,
-            telefone = dto.telefone
+            telefone = dto.telefone,
+            email = dto.email,
+            senha = dto.senha
         )
     }
 }
