@@ -1,6 +1,8 @@
 package br.upf.sistemaeventos.model
 
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
@@ -15,6 +17,7 @@ data class Usuario(
     val nome: String,
     val senha: String,
     val email: String,
+    @Enumerated(value = EnumType.STRING)
     val role: UserRole = UserRole.USER,
     val cidade: String,
     val telefone: String,
