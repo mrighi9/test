@@ -1,0 +1,3 @@
+CREATE TABLE `sala` (
+ `id` bigint NOT NULL PRIMARY KEY AUTO_INCREMENT,
+);
