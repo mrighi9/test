@@ -23,7 +23,7 @@ data class Usuario(
     val telefone: String,
 
     @OneToMany(mappedBy = "usuario")
-    val inscricoes: List<Inscricao> = listOf()
+    val reservas: List<Reserva> = listOf()
 ) : UserDetails {
     override fun getAuthorities(): MutableList<SimpleGrantedAuthority> =
         if (role == UserRole.ADMIN) mutableListOf(

@@ -8,12 +8,12 @@ import jakarta.persistence.ManyToOne
 import java.time.LocalDateTime
 
 @Entity
-data class Inscricao(
+data class Reserva(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     @ManyToOne
     val usuario: Usuario,
     @ManyToOne
-    val evento: Evento,
+    val quarto: Quarto,
     val data: LocalDateTime = LocalDateTime.now()
 )

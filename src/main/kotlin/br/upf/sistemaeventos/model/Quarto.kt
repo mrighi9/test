@@ -7,20 +7,17 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.OneToMany
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity
-data class Evento(
+data class Quarto(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val nome: String,
-    val data: LocalDate,
-    val dataInicioInsc: LocalDateTime,
-    val dataFimInsc: LocalDateTime,
-    val descricao: String,
+    val dataInicio: LocalDateTime,
+    val dataFim: LocalDateTime,
     @Enumerated(value = EnumType.STRING)
-    val status: StatusEvento,
-    @OneToMany(mappedBy = "evento")
-    val inscritos: List<Inscricao> = listOf()
+    val status: StatusQuarto,
+    @OneToMany(mappedBy = "quarto")
+    val reservas: List<Reserva> = listOf()
 )

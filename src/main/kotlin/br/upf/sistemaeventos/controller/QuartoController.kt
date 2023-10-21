@@ -1,8 +1,8 @@
 package br.upf.sistemaeventos.controller
 
-import br.upf.sistemaeventos.dtos.EventoDTO
-import br.upf.sistemaeventos.dtos.EventoResponseDTO
-import br.upf.sistemaeventos.service.EventoService
+import br.upf.sistemaeventos.dtos.QuartoDTO
+import br.upf.sistemaeventos.dtos.QuartoResponseDTO
+import br.upf.sistemaeventos.service.QuartoService
 import jakarta.transaction.Transactional
 import jakarta.validation.Valid
 import org.springframework.data.domain.Page
@@ -23,38 +23,38 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.util.UriComponentsBuilder
 
 @RestController
-@RequestMapping("/eventos")
-class EventoController(val service: EventoService) {
+@RequestMapping("/reservas")
+class QuartoController(val service: QuartoService) {
 
     @GetMapping
     fun listar(
-        @RequestParam(required = false) nomeEvento: String?,
+        @RequestParam(required = false) nomeQuarto: String?,
         @PageableDefault(size = 10) paginacao: Pageable)
-    : Page<EventoResponseDTO> {
-        return service.listar(nomeEvento, paginacao)
+    : Page<QuartoResponseDTO> {
+        return service.listar(nomeQuarto, paginacao)
     }
 
     @GetMapping("/{id}")
-    fun buscarPorId(@PathVariable id: Long): EventoResponseDTO {
+    fun buscarPorId(@PathVariable id: Long): QuartoResponseDTO {
         return service.buscarPorId(id)
     }
 
     @PostMapping
     @Transactional
-    fun cadastra(@RequestBody @Valid dto: EventoDTO,
+    fun cadastra(@RequestBody @Valid dto: QuartoDTO,
                  uriBuilder: UriComponentsBuilder
-    ): ResponseEntity<EventoResponseDTO> {
-        val eventoResponse = service.cadastrar(dto)
-        val uri = uriBuilder.path("/eventos/${eventoResponse.id}")
+    ): ResponseEntity<QuartoResponseDTO> {
+        val quartoResponse = service.cadastrar(dto)
+        val uri = uriBuilder.path("/reservas/${quartoResponse.id}")
             .build().toUri()
-        return ResponseEntity.created(uri).body(eventoResponse)
+        return ResponseEntity.created(uri).body(quartoResponse)
     }
 
     @PutMapping("/{id}")
     @Transactional
     fun atualizar(@PathVariable id: Long,
-                  @RequestBody @Valid dto: EventoDTO
-    ): EventoResponseDTO {
+                  @RequestBody @Valid dto: QuartoDTO
+    ): QuartoResponseDTO {
         return service.atualizar(id, dto)
     }
 
