@@ -1,2 +1,5 @@
-# sistemaeventos
-Sistema sendo desenvolvido com os alunos da graduação da UPF
+Sistema de reserva e cadastro hoteleiro
+
+195296 - Eduardo Colet
+
+190947 - Miguel Righi

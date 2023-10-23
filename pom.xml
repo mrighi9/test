@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.upf</groupId>
-	<artifactId>sistemaeventos</artifactId>
+	<artifactId>sistemahotel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Sistema de Eventos</name>
 	<description>Sistema de eventos</description>
